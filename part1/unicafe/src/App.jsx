@@ -1,15 +1,19 @@
 import { useState } from 'react'
 
-const Display = (props) => {
-  if (props.percent) {
-    return(
-      <p>{props.text} {props.value} %</p>
-    )
-  }
+const Statistics = ({ good, neutral, bad, all, average, positive }) => {
   return(
-    <p>{props.text} {props.value}</p>
+    <div>
+      <h1>statistics</h1>
+      <p>good {good}</p>
+      <p>neutral {neutral}</p>
+      <p>bad {bad}</p>
+      <p>all {all}</p>
+      <p>average {average}</p>
+      <p>positive {positive} %</p>
+    </div>
   )
 }
+
 const Button = ({ onClick, text }) =>
   <button onClick={onClick}>{text}</button>
 
@@ -54,13 +58,8 @@ const App = () => {
       <Button onClick={addNeutralReview} text='neutral' />
       <Button onClick={addBadReview} text='bad' />
 
-      <h1>statistics</h1>
-      <Display text='good' value={good} />
-      <Display text='neutral' value={neutral} />
-      <Display text='bad' value={bad} />
-      <Display text='all' value={all} />
-      <Display text='average' value={average} />
-      <Display text='positive' value={positive} percent="true" />
+      <Statistics good={good} neutral={neutral} bad={bad}
+                  all={all} average={average} positive={positive} />
     </div>
   )
 }
